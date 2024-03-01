@@ -17,12 +17,11 @@ from .forms import *
 import secrets
 import hashlib
 from django.utils import timezone
-from django.utils import timezone
 
-from django.utils import timezone
 
 def login_view(request):
     if request.method == 'POST':
+        #getting the fields from the user
         username = request.POST.get('username')
         password = request.POST.get('password')
         if username == '' or password == '':
