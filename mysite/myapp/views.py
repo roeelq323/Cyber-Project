@@ -318,18 +318,7 @@ def addCust(request):
             'address': request.POST.get('customer-Address', ''),
             'card_type': request.POST.get('customer-Card_Type', ''),
         }
-        special_characters = '"!@#$%^&*()''-+?_=,<>/"'
-        letters = 'abcdefghijklmnopkrstuvqwxyz'
-        numbers = '1234567890'
-
-        if (any(c in special_characters for c in customer_data['customer_id']) or any(c in letters for c in customer_data['customer_id']) or
-            any(c in special_characters for c in customer_data['first_name']) or any(c in numbers for c in customer_data['first_name']) or
-            any(c in special_characters for c in customer_data['last_name']) or any(c in numbers for c in customer_data['last_name']) or
-            any(c in special_characters for c in customer_data['phone_number']) or any(c in letters for c in customer_data['phone_number']) or
-            any(c in special_characters for c in customer_data['address']) or
-            any(c in special_characters for c in customer_data['card_type']) or any(c in numbers for c in customer_data['card_type'])): 
-            error_message="One or more information that you gave was incorrect"
-            return render(request, 'add_cust.html', {'error_message': error_message})
+        
         try:
             #ex=add_customer(customer_data)
             coorectAdd_customer(customer_data)
