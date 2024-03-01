@@ -246,9 +246,9 @@ def sign_up(request):
         # passing request.POST generates a dict of values entered
         form = registrationForm(request.POST)
         if form.is_valid():
-            userEmail = form.cleaned_data["email"]
-            userPassword = form.cleaned_data["password"]
-            userName = form.cleaned_data["name"]
+            userName = request.POST.get('name')
+            userEmail = request.POST.get('email')
+            userPassword = request.POST.get('password')
             # check against database if email is already in use
             if MyappUsers.objects.filter(username=userName).exists():
                 form.add_error(
@@ -258,11 +258,13 @@ def sign_up(request):
                     'email', 'A user with this email already exists.')
             elif userPassword:
                 # Create a new User instance
-                user = MyappUsers(username=userName, email=userEmail)
-                # Set the password, which internally generates a salt and hashes the password
-                user.set_password(userPassword)
-                user.history = 1
-                user.save()
+                salt = secrets.token_hex(16)
+                password_salt = userPassword + salt
+                hashed_password = hashlib.sha256(password_salt.encode()).hexdigest()
+                query = "INSERT INTO site_users (username, email, salt, password1, password2, password3, history, failed_login_attempts) VALUES ('" + userName + "', '" + userEmail + "', '" + salt + "', '" + hashed_password + "', '', '', 1, 0)"
+        # Execute the SQL query
+                with connection.cursor() as cursor:
+                    cursor.execute(query)
                 print(form.cleaned_data)  # prints out the form dictionary
                 return redirect("/")
     else:

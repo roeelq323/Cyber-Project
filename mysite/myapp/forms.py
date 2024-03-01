@@ -162,7 +162,7 @@ class changePasswordForm(forms.Form):
 
 
 class registrationForm(forms.Form):
-    name = forms.CharField(label="Enter User Name", max_length=40, error_messages={
+    name = forms.CharField(label="Enter User Name", max_length=100, error_messages={
         "required": "This field cannot stay blank!",
         "max_length": "To many characters entered, maximum ammount is 40"
     })

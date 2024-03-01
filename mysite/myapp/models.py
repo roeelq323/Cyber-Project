@@ -8,7 +8,7 @@ from .password_config import MAX_HISTORY
 
 class MyappUsers(models.Model):
     id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=16)
+    username = models.CharField(max_length=50)
     email = models.CharField(max_length=256)
     salt = models.CharField(max_length=32)
     for x in range(1, MAX_HISTORY+1):
