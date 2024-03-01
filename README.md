@@ -31,6 +31,8 @@ cd Cyber-Project
 ```bash
 # Create a virtual environment named 'env'
 virtualenv env
+# or if the first one dosent work
+python -m venv env
 ```
 # Activate the virtual environment
 ```bash
