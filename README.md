@@ -50,8 +50,8 @@ after that run the following commands:
 ```bash
 cd mysite
 # these commands will create the necessary tables in your database:
-python manage.py makemigrations myapp
-python manage.py migrate myapp
+python manage.py makemigrations
+python manage.py migrate
 ```
 # Run the Project
 ```bash
