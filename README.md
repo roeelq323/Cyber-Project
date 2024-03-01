@@ -25,12 +25,14 @@ git clone https://github.com/roeelq323/Cyber-Project.git
 
 # Navigate to the Project Directory
 ```bash
-cd mysite
+cd Cyber-Project
 ```
 #Create and Activate a Virtual Environment
 ```bash
 # Create a virtual environment named 'env'
 virtualenv env
+# or if the first one dosent work
+python -m venv env
 ```
 # Activate the virtual environment
 ```bash
@@ -40,6 +42,16 @@ source env/bin/activate          # For Unix/Linux
 # Install Dependencies
 ```bash
 pip install -r requirements.txt
+```
+# Connecting to your Database
+Go to into Cyber-Project/mysite/mysite/settings.py and open it.
+then search for the DATABASES setting and enter your database information.
+after that run the following commands:
+```bash
+cd mysite
+# these commands will create the necessary tables in your database:
+python manage.py makemigrations
+python manage.py migrate
 ```
 # Run the Project
 ```bash
