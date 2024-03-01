@@ -44,7 +44,7 @@ source env/bin/activate          # For Unix/Linux
 pip install -r requirements.txt
 ```
 # Connecting to your Database
-Go to into mysite folder and open the settings.py file.
+Go to into Cyber-Project/mysite/mysite/settings.py and open it.
 then search for the DATABASES setting and enter your database information.
 after that run the following commands:
 ```bash
