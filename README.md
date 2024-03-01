@@ -25,16 +25,17 @@ git clone https://github.com/roeelq323/Cyber-Project.git
 
 # Navigate to the Project Directory
 ```bash
-cd Cyber-Project
+cd mysite
 ```
 #Create and Activate a Virtual Environment
 ```bash
 # Create a virtual environment named 'env'
 virtualenv env
-
+```
 # Activate the virtual environment
-source env/bin/activate          # For Unix/Linux
+```bash
 env\Scripts\activate.bat        # For Windows
+source env/bin/activate          # For Unix/Linux
 ```
 # Install Dependencies
 ```bash
