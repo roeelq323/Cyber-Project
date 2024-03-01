@@ -4,7 +4,7 @@
 {% endblock %}
 {% block bodys %}
 <header class="H1_name">
-    <h1>{{ head1 }}</h1>
+    <h1>{{ head1|safe }}</h1>
 </header>
 <a href="add_cust/" class="button-link">Add Customers</a>
 <a href="changepassword/" class="button-link">Change Password</a>
@@ -21,15 +21,15 @@
     </thead>
     <tbody>
         {% if error_message %}
-    <p>{{ error_message }}</p>
+    <p>{{ error_message|safe }}</p>
 {% else %}
         <tbody>
             {% for customer in customers %}
                 <tr>
-                    <td>{{ customer.0 }}</td>  {# ID #}
-                    <td>{{ customer.1 }} {{ customer.2 }}</td>  {# Full Name #}
-                    <td>Email: {{ customer.3 }}<br>Phone: {{ customer.4 }}</td>  {# Contact Information #}
-                    <td>Address: {{ customer.5 }}<br>Card Type: {{ customer.6 }}</td>  {# Billing Information #}
+                    <td>{{ customer.0|safe }}</td>  {# ID #}
+                    <td>{{ customer.1|safe}} {{ customer.2|safe }}</td>  {# Full Name #}
+                    <td>Email: {{ customer.3|safe }}<br>Phone: {{ customer.4|safe }}</td>  {# Contact Information #}
+                    <td>Address: {{ customer.5|safe }}<br>Card Type: {{ customer.6|safe }}</td>  {# Billing Information #}
                 </tr>
             {% endfor %}
         </tbody>
