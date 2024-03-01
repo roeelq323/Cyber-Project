@@ -202,7 +202,9 @@ def change_password(request):
                 if new_password == old:
                     valid = False
                     break
-            if  not hashlib.sha256((userOld + user.salt).encode()).hexdigest() == curr_password:
+            if user.history == 3:
+                form.add_error('password_old', 'The user exceded the times he can change password!')
+            elif  not hashlib.sha256((userOld + user.salt).encode()).hexdigest() == curr_password:
                 form.add_error('password_old', 'incorrect old password')
             elif valid == False:
                 form.add_error('password', 'already used this password')
