@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block bodyclasses %}
+    class="add_costumer_page"
+{% endblock %}
+    {% block bodys %}
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <form id="customer-form" method="post" action="">
+    {% csrf_token %}
+    {% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
+    <h2>Customer Information</h2>
+    <label for="customer-ID">ID:</label>
+    <input type="tel" name="customer-ID" class="customer-input" placeholder="Enter your ID" required>
+
+    <label for="customer-name">Name:</label>
+    <input type="text" name="customer-name" class="customer-input" placeholder="Enter name" required>
+
+    <label for="customer-Lastname">Last Name:</label>
+    <input type="text" name="customer-Lastname" class="customer-input" placeholder="Enter Last name" required>
+
+    <label for="customer-email">Email:</label>
+    <input type="email" name="customer-email" class="customer-input" placeholder="Enter email" required>
+
+    <label for="customer-phone">Phone:</label>
+    <input type="tel" name="customer-phone" class="customer-input" placeholder="Enter phone" required>
+
+    <label for="customer-Address">Address:</label>
+    <input type="text" name="customer-Address" class="customer-input" placeholder="Enter Address" required>
+
+    <label for="customer-Card_Type">Card_Type:</label>
+    <input type="text" name="customer-Card_Type" class="customer-input" placeholder="Enter Card Type" required>
+
+    <button type="submit" id="add-customer-btn">Add Customer</button>
+</form>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

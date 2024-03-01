@@ -1,0 +1,169 @@
+<style>
+    .add_costumer_page {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#customer-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.customer-input {
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#add-customer-btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.add_costumer_page {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#customer-form,
+#customer-list {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%; /* Adjust the width as needed */
+}
+
+.customer-input {
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#add-customer-btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#customer-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+#customer-list th, #customer-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#customer-list th {
+    background-color: #f2f2f2;
+}
+.custumersPage {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  .H1_name {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .tableInformation {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #333;
+    color: white;
+  }
+
+
+  .container {
+    text-align: right;
+}
+
+#add-customer-link {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block; /* Ensures button is not full width */
+}
+.button-link {
+    display: inline-block;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .button-link:hover {
+    background-color: #45a049;
+  }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ head1 }}</title>
+    <!-- Link to external CSS file -->
+</head>
+<body {% block bodyclasses %} {% endblock %}>
+    {% block head1%}
+    {% endblock %}
+    {% block bodys %}
+    {% endblock %}
+<link rel="icon" href="data:,">
+</body>
+
+</html>

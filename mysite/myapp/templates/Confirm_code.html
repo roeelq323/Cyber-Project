@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Your existing styles remain unchanged */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        input:invalid {
+            border: 2px solid #ff4d4d;
+        }
+
+        input:valid {
+            border: 1px solid #ccc;
+        }
+
+        /* Adjust the height of the input field */
+        input[type="text"] {
+            height: 40px; /* You can adjust this value as needed */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Enter Code</h2>
+    </div>
+    <p>Enter your Code sent via Email.</p>
+    <form method="post" action="{% url 'Code_valid' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="Code">Code:</label>
+            <input type="text" class="form-control" id="Code" name="Code" required >
+        </div>
+
+        <button type="submit" class="btn btn-primary" href="/forgotpassword">Confirm</button>
+    </form>
+</div>
+
+{% if message %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endif %}
+</body>
+</html>

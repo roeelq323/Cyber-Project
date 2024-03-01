@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block bodyclasses %}
+    class="custumersPage"
+{% endblock %}
+{% block bodys %}
+<header class="H1_name">
+    <h1>{{ head1 }}</h1>
+</header>
+<a href="add_cust/" class="button-link">Add Customers</a>
+<a href="changepassword/" class="button-link">Change Password</a>
+</table>
+
+  <table class="tableInformation">
+    <thead>
+      <tr>
+        <th>Customer ID</th>
+        <th>Full Name</th>
+        <th>Contact Information</th>
+        <th>Billing Information</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% if error_message %}
+    <p>{{ error_message }}</p>
+{% else %}
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.0 }}</td>  {# ID #}
+                    <td>{{ customer.1 }} {{ customer.2 }}</td>  {# Full Name #}
+                    <td>Email: {{ customer.3 }}<br>Phone: {{ customer.4 }}</td>  {# Contact Information #}
+                    <td>Address: {{ customer.5 }}<br>Card Type: {{ customer.6 }}</td>  {# Billing Information #}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+    </tbody>
+{% endblock %}
+
+
