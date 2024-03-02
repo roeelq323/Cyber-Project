@@ -5,19 +5,20 @@ from .password_config import MAX_HISTORY
 
 # Create your models here.
 
-
+# SITE USERS MODEL
 class MyappUsers(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=16)
     email = models.CharField(max_length=256)
     salt = models.CharField(max_length=32)
-    for x in range(1, MAX_HISTORY+1):
+    for x in range(1, MAX_HISTORY+1): # creating password fields based on max history on the password config file
         field_name = f'password{x}'
         locals()[field_name] = models.CharField(max_length=200,default = '')
-    history = models.IntegerField(default = 1)
-    last_login_attempt = models.DateTimeField(null=True, blank=True)
-    failed_login_attempts = models.IntegerField(default=0)
+    history = models.IntegerField(default = 1) # saves the current password in ussage number
+    last_login_attempt = models.DateTimeField(null=True, blank=True) # for buffer timer
+    failed_login_attempts = models.IntegerField(default=0) # for counting login attempts 
 
+# making djnago create a table in the database when doing migrations
     class Meta:
         managed=True
         db_table = 'site_users'
@@ -44,10 +45,7 @@ class MyappUsers(models.Model):
         return self.password == hashed_password
 
 
-
-
-
-
+# CUSTOMERS MODEL
 class Customers(models.Model):
     customer_id = models.CharField(max_length=9,primary_key=True)
     first_name = models.CharField(max_length=16)
@@ -57,12 +55,13 @@ class Customers(models.Model):
     address = models.CharField(max_length=50)
     card_type = models.CharField(max_length=50)
 
+# making djnago create a table in the database when doing migrations
     class Meta:
         managed=True
         db_table = 'customers'
 
 
-
+# getting all the customers data from the database
 def customer_list_view():
     try:
         with connection.cursor() as cursor:
@@ -70,26 +69,11 @@ def customer_list_view():
             customers = cursor.fetchall()
     except Exception as e:
         print(f"Error: {e}")
-        #customers=e
         customers = 'Some thing wrong please check your connection'
 
     return customers
 
-
-def add_customer(customer_data):
-    try:
-        with connection.cursor() as cursor:
-            # str=f"INSERT INTO customers (`ID`="+customer_data['customer_id']+", `First Name`="
-            # +customer_data['first_name']+"`Email`="+customer_data['email']+",`Phone Number`="+customer_data['phone_number']
-            # +",`Address`="+customer_data['address']+", `Card Type`="+customer_data['card_type']
-            cursor.execute(
-                f"INSERT INTO customers (`customer_id`={customer_data['customer_id']}, `first_name`={customer_data['first_name']}, `last_name`={ customer_data['last_name']}, "
-                f"`email`={customer_data['email']},`phone_number`={customer_data['phone_number']}, `address`={customer_data['address']}, `card_type`={customer_data['card_type']})"
-                #str
-            )
-    except Exception as e:
-        return e
-
+# adding a customer to the database
 def coorectAdd_customer(customer_data):
     try:
         with connection.cursor() as cursor:

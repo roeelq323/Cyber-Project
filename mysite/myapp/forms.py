@@ -6,17 +6,15 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 from .models import *
-from django.forms import ModelForm, DateInput
-from django.contrib.auth.models import User
+from django.forms import ModelForm
 from django import forms
-from django.core.exceptions import ValidationError
 from .password_config import *
 import string
 import re
 
 
 
-
+# EMAIL CREATION FORM
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
     username = forms.CharField(max_length=254,
@@ -36,7 +34,7 @@ class Meta:
     exclude = ['created_at', 'edited at','message','subject']
 
     
-
+# FORGOT PASSWORD FORM
 class forgotPasswordForm(forms.Form):
     password = forms.CharField(label="Enter Password", max_length=40)
     password_repeat = forms.CharField(label="Repeat Password", max_length=40)
@@ -90,17 +88,14 @@ class forgotPasswordForm(forms.Form):
                 if not any(char in special_characters for char in password):
                     self.add_error(
                         'password', "Passwords must contain at least one special character.")
+            # Check if the password appears in dictonary
             if password in PASSWORD_DICT:
                     self.add_error(
                         'password', "You can't pick this password")
 
 
 
-
-
-
-
-
+# CHANGE PASSWORD FORM
 class changePasswordForm(forms.Form):
     password_old = forms.CharField(label="Enter Your Old Password" , max_length=40)
     password = forms.CharField(label="Enter Password", max_length=40)
@@ -155,6 +150,7 @@ class changePasswordForm(forms.Form):
                 if not any(char in special_characters for char in password):
                     self.add_error(
                         'password', "Passwords must contain at least one special character.")
+            # Check if the password appears in dictonary
             if password in PASSWORD_DICT:
                     self.add_error(
                         'password', "You can't pick this password")
@@ -230,12 +226,13 @@ class registrationForm(forms.Form):
                 if not any(char in special_characters for char in password):
                     self.add_error(
                         'password', "Passwords must contain at least one special character.")
+            # Check if the password appears in dictonary
             if password in PASSWORD_DICT:
                     self.add_error(
                         'password', "You can't pick this password")
                     
 
-
+# CUSTOMER FORM
 class CustomerForm(forms.Form):
     customer_ID = forms.CharField(max_length=9)
     print(customer_ID)
