@@ -60,16 +60,6 @@ python manage.py migrate
 python manage.py runserver
 ```
 Once the server is running, you can access the application by visiting http://localhost:8000 in your web browser.
-Usage
-[Provide any additional instructions or guidance on how to use the project here.]
 
-Contributing
-[If you'd like to contribute to the project, include instructions for contributors here.]
-
-License
-[Include information about the project's license here.]
-
-Acknowledgements
-[If your project uses any third-party resources or inspiration, acknowledge them here.]
 
 
