@@ -20,7 +20,7 @@ Before you begin, ensure you have the following installed on your system:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/roeelq323/Cyber-Project.git
+git clone -b vulnerable https://github.com/roeelq323/Cyber-Project.git
 ```
 
 # Navigate to the Project Directory
