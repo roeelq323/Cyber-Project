@@ -70,6 +70,6 @@ this should when submitting make an alert everytime the table is opened.
 if you are trying to demonstrate an Sql injection you can do the following:
 
 1. In the login menu you can enter in the username input: ' OR 1=1; -- this will let you login without entering a password.
-2. In the register menu you can enter in the username input: ','','','','','','0','1'); this will make a new user will with the values you put between the comas without checking for any malicious code.
+2. In the register menu you can enter in the username input: ','','','','','','0','1'); --  this will make a new user will with the values you put between the comas without checking for any malicious code.
 3. In the add customer menu you can do the same as register and create a customer with any data you want.
 
