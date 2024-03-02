@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test',
         'USER': 'root',
-        'PASSWORD': 'ZeroGod323?',
+        'PASSWORD': '123sdnkuj',
         'HOST': '127.0.0.1',
         'PORT': '3306'
     }
@@ -105,6 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PASSWORD_HASHERS = [
+    "myapp.passwordHasher.CustomPBKDF2PasswordHasher",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

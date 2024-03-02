@@ -239,20 +239,20 @@ class registrationForm(forms.Form):
 class CustomerForm(forms.Form):
     customer_ID = forms.CharField(max_length=9)
     print(customer_ID)
-    customer_name = forms.CharField(label='customer-name', max_length=100)
-    customer_Lastname = forms.CharField(label='customer-Lastname', max_length=100)
+    customer_name = forms.CharField(label='customer-name', max_length=255)
+    customer_Lastname = forms.CharField(label='customer-Lastname', max_length=255)
     customer_email = forms.EmailField()
-    customer_phone = forms.CharField(max_length=20)
+    customer_phone = forms.CharField(max_length=255)
     customer_Address = forms.CharField(label='customer-Address', max_length=255)
-    customer_Card_Type = forms.CharField(label='customer-Card_Type', max_length=50)
+    customer_Card_Type = forms.CharField(label='customer-Card_Type', max_length=255)
 
     def clean(self):
         cleaned_data = super().clean()
 
-        for field_name, field_value in cleaned_data.items():
-            if field_name == 'customer_ID':
-                if '<' in str(field_value) and '>' in str(field_value) or len(field_name)!=9:
-                    self.add_error(field_name, 'Invalid characters detected. HTML elements are not allowed.')
-            else:
-                if '<' in str(field_value) and '>' in str(field_value):
-                    self.add_error(field_name, 'Invalid characters detected. HTML elements are not allowed.')
+        #for field_name, field_value in cleaned_data.items():
+        #    if field_name == 'customer_ID':
+        #        if '<' in str(field_value) and '>' in str(field_value) or len(field_name)!=9:
+        #            self.add_error(field_name, 'Invalid characters detected. HTML elements are not allowed.')
+        #    else:
+        #        if '<' in str(field_value) and '>' in str(field_value):
+        #            self.add_error(field_name, 'Invalid characters detected. HTML elements are not allowed.')

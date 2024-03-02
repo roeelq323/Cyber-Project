@@ -17,51 +17,31 @@ from .forms import *
 import secrets
 import hashlib
 from django.utils import timezone
-
+from django.contrib.auth.hashers import make_password
 
 def login_view(request):
     if request.method == 'POST':
         #getting the fields from the user
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if username == '' or password == '':
-            error_message = f"Not all fields are filled"
-            return render(request, 'login.html', {'error_message': error_message})
 
         try:
-            user = MyappUsers.objects.get(username=username)
+             with connection.cursor() as cursor:
+                  sql_query = f"SELECT * FROM site_users WHERE username='{username}' AND password1= '{make_password(password)}'  LIMIT 1"
+                  cursor.execute(sql_query)
+                  userRow = cursor.fetchone()  
+
+                  if not userRow:
+                      error_message = f"Invalid login credentials for username '{username}'. Please try again."
+                      return render(request, 'login.html', {'error_message': error_message})
+                
+                  user = MyappUsers.objects.get(pk = userRow[0])
+
         except MyappUsers.DoesNotExist:
             error_message = f"User Not Found!"
             return render(request, 'login.html', {'error_message': error_message})
 
-        cooldown_time = timezone.now() - timezone.timedelta(minutes=2)  # 3 minute cooldown
-        if user.last_login_attempt and user.last_login_attempt > cooldown_time:
-            time_remaining = user.last_login_attempt + timezone.timedelta(minutes=2) - timezone.now()
-            error_message = f"Too many failed login attempts. Please try again after {time_remaining.seconds // 60} minutes."
-            return render(request, 'login.html', {'error_message': error_message})
-
-        num_pass = user.history
-        stored_password = getattr(user, f'password{num_pass}')
-        salt = user.salt
-        hashed_password = hashlib.sha256((password + salt).encode()).hexdigest()
-
-        if hashed_password == stored_password:
-            request.session['username'] = username
-            user.failed_login_attempts = 0  # Reset the failed attempts counter
-            user.last_login_attempt = None  # Reset the cooldown
-            user.save()
-            return redirect('user')
-        else:
-            user.failed_login_attempts += 1
-            user.save()
-
-            if user.failed_login_attempts%3 == 0:
-                user.last_login_attempt = timezone.now()
-                user.save()
-                error_message = f"Too many failed login attempts. Please try again after 2 minutes."
-            else:
-                error_message = f"Invalid login credentials for username '{username}'. Please try again."
-            return render(request, 'login.html', {'error_message': error_message})
+        return redirect('user')   
          
     return render(request, 'login.html')
 
@@ -229,7 +209,7 @@ def sign_up_vulnerable(request):
 
         # Construct the SQL query using string concatenation (vulnerable)
         query = "INSERT INTO login_screen_user (user_name, email, password) VALUES ('" + \
-            user_name + "', '" + email + "', '" + password + "')"
+            user_name + "', '" + email + "', '" + make_password(password) + "')"
 
         # Execute the SQL query
         with connection.cursor() as cursor:
@@ -260,7 +240,7 @@ def sign_up(request):
                 # Create a new User instance
                 salt = secrets.token_hex(16)
                 password_salt = userPassword + salt
-                hashed_password = hashlib.sha256(password_salt.encode()).hexdigest()
+                hashed_password = make_password(userPassword)
                 query = "INSERT INTO site_users (username, email, salt, password1, password2, password3, history, failed_login_attempts) VALUES ('" + userName + "', '" + userEmail + "', '" + salt + "', '" + hashed_password + "', '', '', 1, 0)"
         # Execute the SQL query
                 with connection.cursor() as cursor:
@@ -325,9 +305,9 @@ def addCust(request):
             #ex=add_customer(customer_data)
             coorectAdd_customer(customer_data)
         except Exception as e:
-            # error_message = f"Error: {ex}"
-            # print(ex)
-            error_message="One or more information that you gave was incorrect "
-            return render(request, 'add_cust.html', {'error_message': error_message})
+             error_message = f"Error: {e}"
+             print(e)
+             #error_message="One or more information that you gave was incorrect "
+             return render(request, 'add_cust.html', {'error_message': error_message})
         return redirect('user')
     return render(request, 'add_cust.html')

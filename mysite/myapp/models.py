@@ -50,7 +50,7 @@ class MyappUsers(models.Model):
 
 class Customers(models.Model):
     customer_id = models.CharField(max_length=9,primary_key=True)
-    first_name = models.CharField(max_length=16)
+    first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=256)
     email = models.CharField(max_length=32)
     phone_number = models.CharField(max_length=50)
