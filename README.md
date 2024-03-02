@@ -60,16 +60,16 @@ python manage.py migrate
 python manage.py runserver
 ```
 Once the server is running, you can access the application by visiting http://localhost:8000 in your web browser.
-Usage
-[Provide any additional instructions or guidance on how to use the project here.]
+# Usage
+if you are trying to demonstrate an XSS attack you can do the following:
 
-Contributing
-[If you'd like to contribute to the project, include instructions for contributors here.]
+while logged in click the add customer button and then write in one of the fields an html code for exmaple:
+<script>alert("you are hacked")</script>
+this should when submitting make an alert everytime the table is opened. 
 
-License
-[Include information about the project's license here.]
+if you are trying to demonstrate an Sql injection you can do the following:
 
-Acknowledgements
-[If your project uses any third-party resources or inspiration, acknowledge them here.]
-
+1. In the login menu you can enter in the username input: ' OR 1=1; -- this will let you login without entering a password.
+2. In the register menu you can enter in the username input: ','','','','','','0','1'); this will make a new user will with the values you put between the comas without checking for any malicious code.
+3. In the add customer menu you can do the same as register and create a customer with any data you want.
 
