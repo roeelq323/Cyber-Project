@@ -4,8 +4,10 @@ Welcome to the Cyber Project repository!
 
 ## About
 
-This project is a Django-based web application designed for [briefly describe the purpose of your project].
-
+This project is a Django-based web application designed for showing examples of XSS attacks and Sql injections.
+The application is a user register system which registers new users and lets them add customers to a customer list. 
+This project has two branches one is vulnrable to all the attacks mentioned above and one handles them and prevents them.
+This branch is the secured branch.
 ## Getting Started
 
 To get a local copy of this project up and running, follow these simple steps.
