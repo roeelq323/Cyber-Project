@@ -94,10 +94,8 @@ def coorectAdd_customer(customer_data):
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO customers (`customer_id`, `first_name`, `last_name`, `email`, `phone_number`, `address`, `card_type`) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                [customer_data['customer_id'], customer_data['first_name'], customer_data['last_name'],
-                 customer_data['email'], customer_data['phone_number'], customer_data['address'],
-                 customer_data['card_type']]
-            )
+                f"INSERT INTO customers (`customer_id`, `first_name`, `last_name`, `email`, `phone_number`, `address`, `card_type`) VALUES " \
+                f"('{customer_data['customer_id']}', '{customer_data['first_name']}', '{customer_data['last_name']}', '{customer_data['email']}', " \
+                f"'{customer_data['phone_number']}', '{customer_data['address']}', '{customer_data['card_type']}')")
     except Exception as e:
         raise e
